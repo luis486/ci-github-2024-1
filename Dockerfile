@@ -1,20 +1,20 @@
-# Usa una imagen base de Node.js
+# Use the official Node.js 14 image as base
 FROM node:14
 
-# Establece el directorio de trabajo dentro del contenedor
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copia los archivos necesarios (package.json y package-lock.json) para instalar las dependencias
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Instala las dependencias del proyecto
+# Install dependencies
 RUN npm install
 
-# Copia el resto de los archivos de la aplicación al directorio de trabajo del contenedor
+# Copy the rest of the application code
 COPY . .
 
-# Expone el puerto en el que la aplicación va a estar escuchando
+# Expose the port on which the app runs
 EXPOSE 3000
 
-# Comando para ejecutar la aplicación cuando se inicie el contenedor
+# Command to run your application
 CMD ["npm", "start"]
